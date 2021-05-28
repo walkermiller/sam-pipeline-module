@@ -4,13 +4,24 @@ from aws_cdk import (core as cdk,
                     aws_codebuild as codebuild, 
                     aws_codecommit as codecommit)
 
+def createDeployStage(buildArtifact: codepipeline.Artifact, app, deployStage):
+    create_changeSet = codepipeline_actions.CloudFormationCreateReplaceChangeSetAction(
+        action_name="{}-Create-Change".format(deployStage),
+        stack_name="{}-{}".format(app, deployStage),
+        template_path=buildArtifact.at_path("packaged.yaml"),
+        change_set_name="triggered change",
+        admin_permissions=True,
+        run_order=1)
+
+    execute_changeSet = codepipeline_actions.CloudFormationExecuteChangeSetAction(
+        action_name="{}-Execute-Change".format(deployStage),
+        change_set_name="triggered change",
+        stack_name="{}-{}".format(app, deployStage),
+        run_order=2)
+
+    return [create_changeSet, execute_changeSet]
 
 class SamPipelineModule(cdk.Stack):
-    
-    def addDeployStage(bucketName, app):
-        # deployAction = codepipeline_actions
-        pass
-
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
         
@@ -26,8 +37,6 @@ class SamPipelineModule(cdk.Stack):
             output=sourceOutput
         )
         pipeline.add_stage(stage_name="Source", actions=[sourceAction])
-
-        pipeline.artifact_bucket.s3_url_for_object()
 
         buildOutput = codepipeline.Artifact()
 
@@ -45,7 +54,7 @@ class SamPipelineModule(cdk.Stack):
                     
                 },
                 "post_build": {  
-                    "commands": ["sam package --s3-bucket {} --output-template-file packaged.yaml".format(pipeline.artifact_bucket.bucket_name)]
+                    "commands": ["sam package --s3-bucket s3://{} --output-template-file packaged.yaml".format(pipeline.artifact_bucket.bucket_name)]
                 }
             },
             "artifacts": {
@@ -62,4 +71,9 @@ class SamPipelineModule(cdk.Stack):
             input=sourceOutput,
             outputs=[buildOutput]
         )
+
         pipeline.add_stage(stage_name="Build", actions=[buildAction])
+
+        ## Add Deploy Stage
+        pipeline.add_stage(stage_name="{}-Deploy".format("dev"),actions=createDeployStage(buildOutput, app, "dev"))
+        pipeline.add_stage(stage_name="{}-Deploy".format("qa"),actions=createDeployStage(buildOutput, app, "qa"))
