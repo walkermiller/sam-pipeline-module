@@ -1,6 +1,6 @@
 {
-    "typeName": "Walker::Pipelines::Lambda::MODULE",
-    "description": "Schema for Module Fragment of type Walker::Pipelines::Lambda::MODULE",
+    "typeName": "Walker::Pipeline::Lambda::MODULE",
+    "description": "Schema for Module Fragment of type Walker::Pipeline::Lambda::MODULE",
     "properties": {
         "Parameters": {
             "type": "object",
@@ -32,7 +32,7 @@
                         }
                     }
                 },
-                "ccServerlessPipelineTemplatep15904DD7EventRule457673A8": {
+                "ccSamPipelineModulep9ABF662CEventRuleC7FF8233": {
                     "type": "object",
                     "properties": {
                         "Type": {

@@ -6043,3 +6043,124 @@ Traceback (most recent call last):
   File "/usr/local/lib/python3.8/site-packages/rpdk/core/upload.py", line 128, in _create_or_update_stack
     raise DownstreamError("Unknown CloudFormation error") from e
 rpdk.core.exceptions.DownstreamError: Unknown CloudFormation error
+[2021-05-28T18:37:55Z] DEBUG    - Logging set up successfully
+[2021-05-28T18:37:55Z] DEBUG    - Running None: Namespace(command=<function main.<locals>.no_command at 0x7f52fd2622f0>, subparser_name=None, verbose=0, version=False)
+[2021-05-28T18:37:55Z] DEBUG    - Finished None
+[2021-05-28T18:38:05Z] DEBUG    - Logging set up successfully
+[2021-05-28T18:38:05Z] DEBUG    - Running submit: Namespace(command=<function submit at 0x7fb758043f28>, dry_run=False, endpoint_url=None, region=None, role_arn=None, set_default=False, subparser_name='submit', use_role=True, verbose=0, version=False)
+[2021-05-28T18:38:05Z] DEBUG    - Root directory: /home/coder/project/repos/sam-pipeline-module
+[2021-05-28T18:38:05Z] DEBUG    - Loading project file '/home/coder/project/repos/sam-pipeline-module/.rpdk-config'
+[2021-05-28T18:38:05Z] DEBUG    - Project file not found. Have you run 'init'?
+Traceback (most recent call last):
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 411, in load
+    self.load_settings()
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 188, in load_settings
+    with self.settings_path.open("r", encoding="utf-8") as f:
+  File "/usr/lib/python3.7/pathlib.py", line 1186, in open
+    opener=self._opener)
+  File "/usr/lib/python3.7/pathlib.py", line 1039, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/coder/project/repos/sam-pipeline-module/.rpdk-config'
+[2021-05-28T18:38:05Z] DEBUG    - Caught exit recommendation
+Traceback (most recent call last):
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 411, in load
+    self.load_settings()
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 188, in load_settings
+    with self.settings_path.open("r", encoding="utf-8") as f:
+  File "/usr/lib/python3.7/pathlib.py", line 1186, in open
+    opener=self._opener)
+  File "/usr/lib/python3.7/pathlib.py", line 1039, in _opener
+    return self._accessor.open(self, flags, mode)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/coder/project/repos/sam-pipeline-module/.rpdk-config'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/cli.py", line 100, in main
+    args.command(args)
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/submit.py", line 14, in submit
+    project.load()
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 414, in load
+    "Project file not found. Have you run 'init'?", e
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 183, in _raise_invalid_project
+    raise InvalidProjectError(msg) from e
+rpdk.core.exceptions.InvalidProjectError: Project file not found. Have you run 'init'?
+[2021-05-28T18:38:05Z] CRITICAL - Project file not found. Have you run 'init'?
+[2021-05-28T18:39:49Z] DEBUG    - Logging set up successfully
+[2021-05-28T18:39:49Z] DEBUG    - Running None: Namespace(artifact_type=None, command=<function init at 0x7f55de4e5488>, force=False, subparser_name=None, type_name=None, verbose=0, version=False)
+[2021-05-28T18:39:49Z] DEBUG    - Root directory: /home/coder/project/repos/sam-pipeline-module
+[2021-05-28T18:39:49Z] WARNING  - Initializing new project
+[2021-05-28T18:39:49Z] DEBUG    - Loading project file '/home/coder/project/repos/sam-pipeline-module/.rpdk-config'
+[2021-05-28T18:40:12Z] DEBUG    - Resource type identifier: Walker::Pipeline::Lambda::MODULE
+[2021-05-28T18:40:12Z] DEBUG    - Overwriting '/home/coder/project/repos/sam-pipeline-module/.rpdk-config'
+[2021-05-28T18:40:12Z] DEBUG    - Fragment directory: /home/coder/project/repos/sam-pipeline-module/fragments
+[2021-05-28T18:40:12Z] DEBUG    - Overwriting '/home/coder/project/repos/sam-pipeline-module/fragments/sample.json'
+[2021-05-28T18:40:12Z] WARNING  - Initialized a new project in /home/coder/project/repos/sam-pipeline-module
+[2021-05-28T18:40:12Z] DEBUG    - Finished None
+[2021-05-28T18:41:35Z] DEBUG    - Logging set up successfully
+[2021-05-28T18:41:35Z] DEBUG    - Running submit: Namespace(command=<function submit at 0x7f6864c3ef28>, dry_run=False, endpoint_url=None, region=None, role_arn=None, set_default=False, subparser_name='submit', use_role=True, verbose=0, version=False)
+[2021-05-28T18:41:35Z] DEBUG    - Root directory: /home/coder/project/repos/sam-pipeline-module
+[2021-05-28T18:41:35Z] DEBUG    - Loading project file '/home/coder/project/repos/sam-pipeline-module/.rpdk-config'
+[2021-05-28T18:41:35Z] INFO     - Validating your module fragments...
+[2021-05-28T18:41:35Z] DEBUG    - Fragment directory: /home/coder/project/repos/sam-pipeline-module/fragments
+[2021-05-28T18:41:35Z] DEBUG    - Invalid template fragment: A Module can only consist of a single template file, but there are 2: ['/home/coder/project/repos/sam-pipeline-module/fragments/sample.json', '/home/coder/project/repos/sam-pipeline-module/fragments/synth.json']
+Traceback (most recent call last):
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 421, in load
+    self._validate_fragments(template_fragment)
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 439, in _validate_fragments
+    template_fragment.validate_fragments()
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/fragment/generator.py", line 71, in validate_fragments
+    raw_fragments = self._read_raw_fragments()
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/fragment/generator.py", line 290, in _read_raw_fragments
+    return self._load_fragment(self._get_fragment_file())
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/fragment/generator.py", line 316, in _get_fragment_file
+    + str(all_fragment_files)
+rpdk.core.exceptions.FragmentValidationError: A Module can only consist of a single template file, but there are 2: ['/home/coder/project/repos/sam-pipeline-module/fragments/sample.json', '/home/coder/project/repos/sam-pipeline-module/fragments/synth.json']
+[2021-05-28T18:41:35Z] DEBUG    - Caught exit recommendation
+Traceback (most recent call last):
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 421, in load
+    self._validate_fragments(template_fragment)
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 439, in _validate_fragments
+    template_fragment.validate_fragments()
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/fragment/generator.py", line 71, in validate_fragments
+    raw_fragments = self._read_raw_fragments()
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/fragment/generator.py", line 290, in _read_raw_fragments
+    return self._load_fragment(self._get_fragment_file())
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/fragment/generator.py", line 316, in _get_fragment_file
+    + str(all_fragment_files)
+rpdk.core.exceptions.FragmentValidationError: A Module can only consist of a single template file, but there are 2: ['/home/coder/project/repos/sam-pipeline-module/fragments/sample.json', '/home/coder/project/repos/sam-pipeline-module/fragments/synth.json']
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/cli.py", line 100, in main
+    args.command(args)
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/submit.py", line 14, in submit
+    project.load()
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 424, in load
+    self._raise_invalid_project(msg, e)
+  File "/home/coder/project/.local/lib/python3.7/site-packages/rpdk/core/project.py", line 183, in _raise_invalid_project
+    raise InvalidProjectError(msg) from e
+rpdk.core.exceptions.InvalidProjectError: Invalid template fragment: A Module can only consist of a single template file, but there are 2: ['/home/coder/project/repos/sam-pipeline-module/fragments/sample.json', '/home/coder/project/repos/sam-pipeline-module/fragments/synth.json']
+[2021-05-28T18:41:35Z] CRITICAL - Invalid template fragment: A Module can only consist of a single template file, but there are 2: ['/home/coder/project/repos/sam-pipeline-module/fragments/sample.json', '/home/coder/project/repos/sam-pipeline-module/fragments/synth.json']
+[2021-05-28T18:41:55Z] DEBUG    - Logging set up successfully
+[2021-05-28T18:41:55Z] DEBUG    - Running submit: Namespace(command=<function submit at 0x7f924deccf28>, dry_run=False, endpoint_url=None, region=None, role_arn=None, set_default=False, subparser_name='submit', use_role=True, verbose=0, version=False)
+[2021-05-28T18:41:55Z] DEBUG    - Root directory: /home/coder/project/repos/sam-pipeline-module
+[2021-05-28T18:41:55Z] DEBUG    - Loading project file '/home/coder/project/repos/sam-pipeline-module/.rpdk-config'
+[2021-05-28T18:41:55Z] INFO     - Validating your module fragments...
+[2021-05-28T18:41:55Z] DEBUG    - Fragment directory: /home/coder/project/repos/sam-pipeline-module/fragments
+[2021-05-28T18:41:55Z] DEBUG    - Overwriting '/home/coder/project/repos/sam-pipeline-module/schema.json'
+[2021-05-28T18:41:55Z] DEBUG    - overrides.json not found. Not writing to package.
+[2021-05-28T18:41:55Z] DEBUG    - Packaging complete, uploading...
+[2021-05-28T18:41:55Z] DEBUG    - Uploading to region 'us-east-1'
+[2021-05-28T18:41:59Z] INFO     - Creating CloudFormationManagedUploadInfrastructure
+[2021-05-28T18:41:59Z] INFO     - CloudFormationManagedUploadInfrastructure already exists. Attempting to update
+[2021-05-28T18:41:59Z] INFO     - CloudFormationManagedUploadInfrastructure stack is up to date
+[2021-05-28T18:41:59Z] DEBUG    - Uploading to 'cloudformationmanageduploadinfrast-artifactbucket-1axwznuemot9o/walker-pipeline-lambda-module-2021-05-28T18-41-59.zip'...
+[2021-05-28T18:41:59Z] DEBUG    - Upload complete
+[2021-05-28T18:41:59Z] DEBUG    - Got S3 URL: s3://cloudformationmanageduploadinfrast-artifactbucket-1axwznuemot9o/walker-pipeline-lambda-module-2021-05-28T18-41-59.zip
+[2021-05-28T18:41:59Z] DEBUG    - Got Log Role: arn:aws:iam::074767584099:role/CloudFormationManagedUplo-LogAndMetricsDeliveryRol-7ZOH6O530WWH
+[2021-05-28T18:42:01Z] WARNING  - Successfully submitted type. Waiting for registration with token '0d6b51d4-ff8a-4550-9661-1a76f57b0420' to complete.
+[2021-05-28T18:42:31Z] WARNING  - Registration complete.
+[2021-05-28T18:42:31Z] WARNING  - {'ProgressStatus': 'COMPLETE', 'Description': 'Deployment is currently in DEPLOY_STAGE of status COMPLETED; ', 'TypeArn': 'arn:aws:cloudformation:us-east-1:074767584099:type/module/Walker-Pipeline-Lambda-MODULE', 'TypeVersionArn': 'arn:aws:cloudformation:us-east-1:074767584099:type/module/Walker-Pipeline-Lambda-MODULE/00000001', 'ResponseMetadata': {'RequestId': 'f846a851-529f-4c4b-9e37-546f6d466b83', 'HTTPStatusCode': 200, 'HTTPHeaders': {'x-amzn-requestid': 'f846a851-529f-4c4b-9e37-546f6d466b83', 'content-type': 'text/xml', 'content-length': '693', 'date': 'Fri, 28 May 2021 18:42:31 GMT'}, 'RetryAttempts': 0}}
+[2021-05-28T18:42:31Z] DEBUG    - Finished submit
