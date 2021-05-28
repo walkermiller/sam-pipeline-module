@@ -6,11 +6,7 @@
     "children": {
       "Tree": {
         "id": "Tree",
-        "path": "Tree",
-        "constructInfo": {
-          "fqn": "@aws-cdk/core.Construct",
-          "version": "1.106.1"
-        }
+        "path": "Tree"
       },
       "SamPipelineModule": {
         "id": "SamPipelineModule",
@@ -18,11 +14,7 @@
         "children": {
           "app": {
             "id": "app",
-            "path": "SamPipelineModule/app",
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.CfnParameter",
-              "version": "1.106.1"
-            }
+            "path": "SamPipelineModule/app"
           },
           "cc": {
             "id": "cc",
@@ -38,10 +30,6 @@
                       "Ref": "app"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-codecommit.CfnRepository",
-                  "version": "1.106.1"
                 }
               },
               "SamPipelineModulep9ABF662CEventRule": {
@@ -115,22 +103,10 @@
                           }
                         ]
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-events.CfnRule",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-events.Rule",
-                  "version": "1.106.1"
                 }
               }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-codecommit.Repository",
-              "version": "1.106.1"
             }
           },
           "p": {
@@ -150,7 +126,23 @@
                         "keyPolicy": {
                           "Statement": [
                             {
-                              "Action": "kms:*",
+                              "Action": [
+                                "kms:Create*",
+                                "kms:Describe*",
+                                "kms:Enable*",
+                                "kms:List*",
+                                "kms:Put*",
+                                "kms:Update*",
+                                "kms:Revoke*",
+                                "kms:Disable*",
+                                "kms:Get*",
+                                "kms:Delete*",
+                                "kms:ScheduleKeyDeletion",
+                                "kms:CancelKeyDeletion",
+                                "kms:GenerateDataKey",
+                                "kms:TagResource",
+                                "kms:UntagResource"
+                              ],
                               "Effect": "Allow",
                               "Principal": {
                                 "AWS": {
@@ -171,21 +163,88 @@
                                 }
                               },
                               "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey",
+                                "kms:Encrypt",
+                                "kms:ReEncrypt*",
+                                "kms:GenerateDataKey*"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "pRole2E4F0E21",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey",
+                                "kms:Encrypt",
+                                "kms:ReEncrypt*",
+                                "kms:GenerateDataKey*"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "pSourceCodeCommitCodePipelineActionRoleC3536254",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey",
+                                "kms:Encrypt",
+                                "kms:ReEncrypt*",
+                                "kms:GenerateDataKey*"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "bpRole953A0AE7",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:Encrypt",
+                                "kms:ReEncrypt*",
+                                "kms:GenerateDataKey*"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "bpRole953A0AE7",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
                             }
                           ],
                           "Version": "2012-10-17"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-kms.CfnKey",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-kms.Key",
-                  "version": "1.106.1"
                 }
               },
               "ArtifactsBucketEncryptionKeyAlias": {
@@ -206,16 +265,8 @@
                           ]
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-kms.CfnAlias",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-kms.Alias",
-                  "version": "1.106.1"
                 }
               },
               "ArtifactsBucket": {
@@ -250,24 +301,12 @@
                           "restrictPublicBuckets": true
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-s3.CfnBucket",
-                      "version": "1.106.1"
                     }
                   },
                   "Notifications": {
                     "id": "Notifications",
-                    "path": "SamPipelineModule/p/ArtifactsBucket/Notifications",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.106.1"
-                    }
+                    "path": "SamPipelineModule/p/ArtifactsBucket/Notifications"
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-s3.Bucket",
-                  "version": "1.106.1"
                 }
               },
               "Role": {
@@ -293,10 +332,6 @@
                           "Version": "2012-10-17"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.CfnRole",
-                      "version": "1.106.1"
                     }
                   },
                   "DefaultPolicy": {
@@ -317,7 +352,7 @@
                                     "s3:GetBucket*",
                                     "s3:List*",
                                     "s3:DeleteObject*",
-                                    "s3:PutObject",
+                                    "s3:PutObject*",
                                     "s3:Abort*"
                                   ],
                                   "Effect": "Allow",
@@ -390,22 +425,10 @@
                               }
                             ]
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Policy",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-iam.Role",
-                  "version": "1.106.1"
                 }
               },
               "Resource": {
@@ -521,10 +544,6 @@
                       ]
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-codepipeline.CfnPipeline",
-                  "version": "1.106.1"
                 }
               },
               "Source": {
@@ -573,10 +592,6 @@
                                   "Version": "2012-10-17"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnRole",
-                              "version": "1.106.1"
                             }
                           },
                           "DefaultPolicy": {
@@ -597,7 +612,7 @@
                                             "s3:GetBucket*",
                                             "s3:List*",
                                             "s3:DeleteObject*",
-                                            "s3:PutObject",
+                                            "s3:PutObject*",
                                             "s3:Abort*"
                                           ],
                                           "Effect": "Allow",
@@ -666,34 +681,14 @@
                                       }
                                     ]
                                   }
-                                },
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                                  "version": "1.106.1"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.Policy",
-                              "version": "1.106.1"
                             }
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Role",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.106.1"
                 }
               },
               "EventsRole": {
@@ -719,10 +714,6 @@
                           "Version": "2012-10-17"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.CfnRole",
-                      "version": "1.106.1"
                     }
                   },
                   "DefaultPolicy": {
@@ -774,22 +765,10 @@
                               }
                             ]
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Policy",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-iam.Role",
-                  "version": "1.106.1"
                 }
               },
               "Build": {
@@ -838,10 +817,6 @@
                                   "Version": "2012-10-17"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnRole",
-                              "version": "1.106.1"
                             }
                           },
                           "DefaultPolicy": {
@@ -880,40 +855,16 @@
                                       }
                                     ]
                                   }
-                                },
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                                  "version": "1.106.1"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.Policy",
-                              "version": "1.106.1"
                             }
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Role",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.106.1"
                 }
               }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-codepipeline.Pipeline",
-              "version": "1.106.1"
             }
           },
           "bp": {
@@ -943,10 +894,6 @@
                           "Version": "2012-10-17"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.CfnRole",
-                      "version": "1.106.1"
                     }
                   },
                   "DefaultPolicy": {
@@ -1023,8 +970,7 @@
                                     "codebuild:CreateReportGroup",
                                     "codebuild:CreateReport",
                                     "codebuild:UpdateReport",
-                                    "codebuild:BatchPutTestCases",
-                                    "codebuild:BatchPutCodeCoverages"
+                                    "codebuild:BatchPutTestCases"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": {
@@ -1058,7 +1004,7 @@
                                     "s3:GetBucket*",
                                     "s3:List*",
                                     "s3:DeleteObject*",
-                                    "s3:PutObject",
+                                    "s3:PutObject*",
                                     "s3:Abort*"
                                   ],
                                   "Effect": "Allow",
@@ -1126,22 +1072,10 @@
                               }
                             ]
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Policy",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-iam.Role",
-                  "version": "1.106.1"
                 }
               },
               "Resource": {
@@ -1156,7 +1090,6 @@
                     "environment": {
                       "type": "LINUX_CONTAINER",
                       "image": "aws/codebuild/standard:1.0",
-                      "imagePullCredentialsType": "CODEBUILD",
                       "privilegedMode": false,
                       "computeType": "BUILD_GENERAL1_SMALL"
                     },
@@ -1172,15 +1105,11 @@
                         "Fn::Join": [
                           "",
                           [
-                            "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"runtime-versions\": {\n        \"python\": 3.8\n      }\n    },\n    \"build\": {\n      \"commands\": [\n        \"sam package --template-file template.yml --s3-bucket s3://",
+                            "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"runtime-versions\": {\n        \"python\": 3.8\n      }\n    },\n    \"build\": {\n      \"commands\": [\n        \"sam build\"\n      ]\n    },\n    \"post_build\": {\n      \"commands\": [\n        \"sam package --s3-bucket ",
                             {
                               "Ref": "pArtifactsBucketC7059E28"
                             },
-                            " --output-template-file ",
-                            {
-                              "Ref": "app"
-                            },
-                            ".yml\"\n      ]\n    }\n  }\n}"
+                            " --output-template-file packaged.yaml\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"discard-paths\": \"yes\",\n    \"files\": [\n      \"packaged.yaml\"\n    ]\n  }\n}"
                           ]
                         ]
                       }
@@ -1192,16 +1121,8 @@
                       ]
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-codebuild.CfnProject",
-                  "version": "1.106.1"
                 }
               }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-codebuild.PipelineProject",
-              "version": "1.106.1"
             }
           },
           "CDKMetadata": {
@@ -1210,36 +1131,16 @@
             "children": {
               "Default": {
                 "id": "Default",
-                "path": "SamPipelineModule/CDKMetadata/Default",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.106.1"
-                }
+                "path": "SamPipelineModule/CDKMetadata/Default"
               },
               "Condition": {
                 "id": "Condition",
-                "path": "SamPipelineModule/CDKMetadata/Condition",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnCondition",
-                  "version": "1.106.1"
-                }
+                "path": "SamPipelineModule/CDKMetadata/Condition"
               }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.Construct",
-              "version": "1.106.1"
             }
           }
-        },
-        "constructInfo": {
-          "fqn": "@aws-cdk/core.Stack",
-          "version": "1.106.1"
         }
       }
-    },
-    "constructInfo": {
-      "fqn": "@aws-cdk/core.App",
-      "version": "1.106.1"
     }
   }
 }

@@ -6,7 +6,9 @@ from aws_cdk import (core as cdk,
 
 
 class SamPipelineModule(cdk.Stack):
-    def addDeployStage(pipeline: codepipeline.Pipeline, account, region):
+    
+    def addDeployStage(bucketName, app):
+        # deployAction = codepipeline_actions
         pass
 
     def __init__(self, scope: cdk.Construct, construct_id: str, **kwargs) -> None:
@@ -39,8 +41,16 @@ class SamPipelineModule(cdk.Stack):
                     }
                 },
                 "build": {
-                    "commands": ["sam package --template-file template.yml --s3-bucket s3://{} --output-template-file {}.yml".format(pipeline.artifact_bucket.bucket_name, app)]
+                    "commands": ["sam build"]
+                    
+                },
+                "post_build": {  
+                    "commands": ["sam package --s3-bucket {} --output-template-file packaged.yaml".format(pipeline.artifact_bucket.bucket_name)]
                 }
+            },
+            "artifacts": {
+                "discard-paths": "yes",
+                "files": ["packaged.yaml"]
             }
         })
         project = codebuild.PipelineProject(self, id="bp", build_spec=buildSpec)
