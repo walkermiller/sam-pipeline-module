@@ -75,5 +75,5 @@ class SamPipelineModule(cdk.Stack):
         pipeline.add_stage(stage_name="Build", actions=[buildAction])
 
         ## Add Deploy Stage
-        pipeline.add_stage(stage_name="{}-Deploy".format("dev"),actions=createDeployStage(buildOutput, app, "dev"))
-        pipeline.add_stage(stage_name="{}-Deploy".format("qa"),actions=createDeployStage(buildOutput, app, "qa"))
+        pipeline.add_stage(stage_name="dev-Deploy", actions=createDeployStage(buildOutput, app, "dev"))
+        pipeline.add_stage(stage_name="qa-Deploy", actions=createDeployStage(buildOutput, app, "qa"))
