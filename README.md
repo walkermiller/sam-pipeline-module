@@ -1,6 +1,6 @@
 # SAM Pipeline Cloudformation Module
 
-Uses AWS cdk to generate the cloudformation template to be used as a cloudformation module. 
+A personal example of using AWS cdk to generate a cloudformation template to be used as a cloudformation module. 
 
 ## Pre-reqs
 - AWS cdk

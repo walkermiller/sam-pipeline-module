@@ -6,11 +6,7 @@
     "children": {
       "Tree": {
         "id": "Tree",
-        "path": "Tree",
-        "constructInfo": {
-          "fqn": "@aws-cdk/core.Construct",
-          "version": "1.106.1"
-        }
+        "path": "Tree"
       },
       "SamPipelineModule": {
         "id": "SamPipelineModule",
@@ -18,11 +14,7 @@
         "children": {
           "app": {
             "id": "app",
-            "path": "SamPipelineModule/app",
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.CfnParameter",
-              "version": "1.106.1"
-            }
+            "path": "SamPipelineModule/app"
           },
           "cc": {
             "id": "cc",
@@ -38,10 +30,6 @@
                       "Ref": "app"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-codecommit.CfnRepository",
-                  "version": "1.106.1"
                 }
               },
               "SamPipelineModulep9ABF662CEventRule": {
@@ -115,22 +103,10 @@
                           }
                         ]
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-events.CfnRule",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-events.Rule",
-                  "version": "1.106.1"
                 }
               }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-codecommit.Repository",
-              "version": "1.106.1"
             }
           },
           "p": {
@@ -150,7 +126,23 @@
                         "keyPolicy": {
                           "Statement": [
                             {
-                              "Action": "kms:*",
+                              "Action": [
+                                "kms:Create*",
+                                "kms:Describe*",
+                                "kms:Enable*",
+                                "kms:List*",
+                                "kms:Put*",
+                                "kms:Update*",
+                                "kms:Revoke*",
+                                "kms:Disable*",
+                                "kms:Get*",
+                                "kms:Delete*",
+                                "kms:ScheduleKeyDeletion",
+                                "kms:CancelKeyDeletion",
+                                "kms:GenerateDataKey",
+                                "kms:TagResource",
+                                "kms:UntagResource"
+                              ],
                               "Effect": "Allow",
                               "Principal": {
                                 "AWS": {
@@ -171,21 +163,152 @@
                                 }
                               },
                               "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey",
+                                "kms:Encrypt",
+                                "kms:ReEncrypt*",
+                                "kms:GenerateDataKey*"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "pRole2E4F0E21",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey",
+                                "kms:Encrypt",
+                                "kms:ReEncrypt*",
+                                "kms:GenerateDataKey*"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "pSourceCodeCommitCodePipelineActionRoleC3536254",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey",
+                                "kms:Encrypt",
+                                "kms:ReEncrypt*",
+                                "kms:GenerateDataKey*"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "bpRole953A0AE7",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:Encrypt",
+                                "kms:ReEncrypt*",
+                                "kms:GenerateDataKey*"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "bpRole953A0AE7",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "pdevDeploydevCreateChangeRoleA9B5E2F5",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "pdevDeploydevCreateChangeCodePipelineActionRoleC09DCEF6",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "pqaDeployqaCreateChangeRoleD4597227",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
+                            },
+                            {
+                              "Action": [
+                                "kms:Decrypt",
+                                "kms:DescribeKey"
+                              ],
+                              "Effect": "Allow",
+                              "Principal": {
+                                "AWS": {
+                                  "Fn::GetAtt": [
+                                    "pqaDeployqaCreateChangeCodePipelineActionRoleFC3686A1",
+                                    "Arn"
+                                  ]
+                                }
+                              },
+                              "Resource": "*"
                             }
                           ],
                           "Version": "2012-10-17"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-kms.CfnKey",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-kms.Key",
-                  "version": "1.106.1"
                 }
               },
               "ArtifactsBucketEncryptionKeyAlias": {
@@ -206,16 +329,8 @@
                           ]
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-kms.CfnAlias",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-kms.Alias",
-                  "version": "1.106.1"
                 }
               },
               "ArtifactsBucket": {
@@ -250,24 +365,12 @@
                           "restrictPublicBuckets": true
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-s3.CfnBucket",
-                      "version": "1.106.1"
                     }
                   },
                   "Notifications": {
                     "id": "Notifications",
-                    "path": "SamPipelineModule/p/ArtifactsBucket/Notifications",
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.106.1"
-                    }
+                    "path": "SamPipelineModule/p/ArtifactsBucket/Notifications"
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-s3.Bucket",
-                  "version": "1.106.1"
                 }
               },
               "Role": {
@@ -293,10 +396,6 @@
                           "Version": "2012-10-17"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.CfnRole",
-                      "version": "1.106.1"
                     }
                   },
                   "DefaultPolicy": {
@@ -317,7 +416,7 @@
                                     "s3:GetBucket*",
                                     "s3:List*",
                                     "s3:DeleteObject*",
-                                    "s3:PutObject",
+                                    "s3:PutObject*",
                                     "s3:Abort*"
                                   ],
                                   "Effect": "Allow",
@@ -399,6 +498,26 @@
                                       "Arn"
                                     ]
                                   }
+                                },
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "pqaDeployqaCreateChangeCodePipelineActionRoleFC3686A1",
+                                      "Arn"
+                                    ]
+                                  }
+                                },
+                                {
+                                  "Action": "sts:AssumeRole",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "pqaDeployqaExecuteChangeCodePipelineActionRole8FC3C72D",
+                                      "Arn"
+                                    ]
+                                  }
                                 }
                               ],
                               "Version": "2012-10-17"
@@ -410,22 +529,10 @@
                               }
                             ]
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Policy",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-iam.Role",
-                  "version": "1.106.1"
                 }
               },
               "Resource": {
@@ -592,6 +699,86 @@
                             }
                           }
                         ]
+                      },
+                      {
+                        "name": "qa-Deploy",
+                        "actions": [
+                          {
+                            "name": "qa-Create-Change",
+                            "inputArtifacts": [
+                              {
+                                "name": "Artifact_Build_CodeBuild"
+                              }
+                            ],
+                            "actionTypeId": {
+                              "category": "Deploy",
+                              "version": "1",
+                              "owner": "AWS",
+                              "provider": "CloudFormation"
+                            },
+                            "configuration": {
+                              "StackName": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Ref": "app"
+                                    },
+                                    "-qa"
+                                  ]
+                                ]
+                              },
+                              "Capabilities": "CAPABILITY_NAMED_IAM",
+                              "RoleArn": {
+                                "Fn::GetAtt": [
+                                  "pqaDeployqaCreateChangeRoleD4597227",
+                                  "Arn"
+                                ]
+                              },
+                              "ActionMode": "CHANGE_SET_REPLACE",
+                              "ChangeSetName": "triggered change",
+                              "TemplatePath": "Artifact_Build_CodeBuild::packaged.yaml"
+                            },
+                            "runOrder": 1,
+                            "roleArn": {
+                              "Fn::GetAtt": [
+                                "pqaDeployqaCreateChangeCodePipelineActionRoleFC3686A1",
+                                "Arn"
+                              ]
+                            }
+                          },
+                          {
+                            "name": "qa-Execute-Change",
+                            "actionTypeId": {
+                              "category": "Deploy",
+                              "version": "1",
+                              "owner": "AWS",
+                              "provider": "CloudFormation"
+                            },
+                            "configuration": {
+                              "StackName": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Ref": "app"
+                                    },
+                                    "-qa"
+                                  ]
+                                ]
+                              },
+                              "ActionMode": "CHANGE_SET_EXECUTE",
+                              "ChangeSetName": "triggered change"
+                            },
+                            "runOrder": 2,
+                            "roleArn": {
+                              "Fn::GetAtt": [
+                                "pqaDeployqaExecuteChangeCodePipelineActionRole8FC3C72D",
+                                "Arn"
+                              ]
+                            }
+                          }
+                        ]
                       }
                     ],
                     "artifactStore": {
@@ -621,10 +808,6 @@
                       ]
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-codepipeline.CfnPipeline",
-                  "version": "1.106.1"
                 }
               },
               "Source": {
@@ -673,10 +856,6 @@
                                   "Version": "2012-10-17"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnRole",
-                              "version": "1.106.1"
                             }
                           },
                           "DefaultPolicy": {
@@ -697,7 +876,7 @@
                                             "s3:GetBucket*",
                                             "s3:List*",
                                             "s3:DeleteObject*",
-                                            "s3:PutObject",
+                                            "s3:PutObject*",
                                             "s3:Abort*"
                                           ],
                                           "Effect": "Allow",
@@ -766,34 +945,14 @@
                                       }
                                     ]
                                   }
-                                },
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                                  "version": "1.106.1"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.Policy",
-                              "version": "1.106.1"
                             }
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Role",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.106.1"
                 }
               },
               "EventsRole": {
@@ -819,10 +978,6 @@
                           "Version": "2012-10-17"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.CfnRole",
-                      "version": "1.106.1"
                     }
                   },
                   "DefaultPolicy": {
@@ -874,22 +1029,10 @@
                               }
                             ]
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Policy",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-iam.Role",
-                  "version": "1.106.1"
                 }
               },
               "Build": {
@@ -938,10 +1081,6 @@
                                   "Version": "2012-10-17"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnRole",
-                              "version": "1.106.1"
                             }
                           },
                           "DefaultPolicy": {
@@ -980,34 +1119,14 @@
                                       }
                                     ]
                                   }
-                                },
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                                  "version": "1.106.1"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.Policy",
-                              "version": "1.106.1"
                             }
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Role",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.106.1"
                 }
               },
               "dev-Deploy": {
@@ -1056,19 +1175,11 @@
                                   "Version": "2012-10-17"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnRole",
-                              "version": "1.106.1"
                             }
                           },
                           "8389e75f-0810-4838-bf64-d6f85a95cf83": {
                             "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
-                            "path": "SamPipelineModule/p/dev-Deploy/dev-Create-Change/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/core.Construct",
-                              "version": "1.106.1"
-                            }
+                            "path": "SamPipelineModule/p/dev-Deploy/dev-Create-Change/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83"
                           },
                           "DefaultPolicy": {
                             "id": "DefaultPolicy",
@@ -1183,22 +1294,10 @@
                                       }
                                     ]
                                   }
-                                },
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                                  "version": "1.106.1"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.Policy",
-                              "version": "1.106.1"
                             }
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Role",
-                          "version": "1.106.1"
                         }
                       },
                       "Role": {
@@ -1224,10 +1323,6 @@
                                   "Version": "2012-10-17"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnRole",
-                              "version": "1.106.1"
                             }
                           },
                           "DefaultPolicy": {
@@ -1300,28 +1395,12 @@
                                       }
                                     ]
                                   }
-                                },
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                                  "version": "1.106.1"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.Policy",
-                              "version": "1.106.1"
                             }
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Role",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.106.1"
                     }
                   },
                   "dev-Execute-Change": {
@@ -1366,19 +1445,11 @@
                                   "Version": "2012-10-17"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.CfnRole",
-                              "version": "1.106.1"
                             }
                           },
                           "8389e75f-0810-4838-bf64-d6f85a95cf83": {
                             "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
-                            "path": "SamPipelineModule/p/dev-Deploy/dev-Execute-Change/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83",
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/core.Construct",
-                              "version": "1.106.1"
-                            }
+                            "path": "SamPipelineModule/p/dev-Deploy/dev-Execute-Change/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83"
                           },
                           "DefaultPolicy": {
                             "id": "DefaultPolicy",
@@ -1439,40 +1510,407 @@
                                       }
                                     ]
                                   }
-                                },
-                                "constructInfo": {
-                                  "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                                  "version": "1.106.1"
                                 }
                               }
-                            },
-                            "constructInfo": {
-                              "fqn": "@aws-cdk/aws-iam.Policy",
-                              "version": "1.106.1"
                             }
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.Role",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/core.Construct",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.Construct",
-                  "version": "1.106.1"
+                }
+              },
+              "qa-Deploy": {
+                "id": "qa-Deploy",
+                "path": "SamPipelineModule/p/qa-Deploy",
+                "children": {
+                  "qa-Create-Change": {
+                    "id": "qa-Create-Change",
+                    "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change",
+                    "children": {
+                      "CodePipelineActionRole": {
+                        "id": "CodePipelineActionRole",
+                        "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change/CodePipelineActionRole",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change/CodePipelineActionRole/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "AWS": {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              "arn:",
+                                              {
+                                                "Ref": "AWS::Partition"
+                                              },
+                                              ":iam::",
+                                              {
+                                                "Ref": "AWS::AccountId"
+                                              },
+                                              ":root"
+                                            ]
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                }
+                              }
+                            }
+                          },
+                          "8389e75f-0810-4838-bf64-d6f85a95cf83": {
+                            "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
+                            "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83"
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change/CodePipelineActionRole/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change/CodePipelineActionRole/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "iam:PassRole",
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::GetAtt": [
+                                              "pqaDeployqaCreateChangeRoleD4597227",
+                                              "Arn"
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Action": [
+                                            "s3:GetObject*",
+                                            "s3:GetBucket*",
+                                            "s3:List*"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": [
+                                            {
+                                              "Fn::GetAtt": [
+                                                "pArtifactsBucketC7059E28",
+                                                "Arn"
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  {
+                                                    "Fn::GetAtt": [
+                                                      "pArtifactsBucketC7059E28",
+                                                      "Arn"
+                                                    ]
+                                                  },
+                                                  "/*"
+                                                ]
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Action": [
+                                            "kms:Decrypt",
+                                            "kms:DescribeKey"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::GetAtt": [
+                                              "pArtifactsBucketEncryptionKeyE5CE2753",
+                                              "Arn"
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Action": [
+                                            "cloudformation:CreateChangeSet",
+                                            "cloudformation:DeleteChangeSet",
+                                            "cloudformation:DescribeChangeSet",
+                                            "cloudformation:DescribeStacks"
+                                          ],
+                                          "Condition": {
+                                            "StringEqualsIfExists": {
+                                              "cloudformation:ChangeSetName": "triggered change"
+                                            }
+                                          },
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::Join": [
+                                              "",
+                                              [
+                                                "arn:",
+                                                {
+                                                  "Ref": "AWS::Partition"
+                                                },
+                                                ":cloudformation:",
+                                                {
+                                                  "Ref": "AWS::Region"
+                                                },
+                                                ":",
+                                                {
+                                                  "Ref": "AWS::AccountId"
+                                                },
+                                                ":stack/",
+                                                {
+                                                  "Ref": "app"
+                                                },
+                                                "-qa/*"
+                                              ]
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "pqaDeployqaCreateChangeCodePipelineActionRoleDefaultPolicy7E12A49A",
+                                    "roles": [
+                                      {
+                                        "Ref": "pqaDeployqaCreateChangeCodePipelineActionRoleFC3686A1"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "Role": {
+                        "id": "Role",
+                        "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change/Role",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change/Role/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "Service": "cloudformation.amazonaws.com"
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                }
+                              }
+                            }
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change/Role/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "SamPipelineModule/p/qa-Deploy/qa-Create-Change/Role/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": [
+                                            "s3:GetObject*",
+                                            "s3:GetBucket*",
+                                            "s3:List*"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": [
+                                            {
+                                              "Fn::GetAtt": [
+                                                "pArtifactsBucketC7059E28",
+                                                "Arn"
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  {
+                                                    "Fn::GetAtt": [
+                                                      "pArtifactsBucketC7059E28",
+                                                      "Arn"
+                                                    ]
+                                                  },
+                                                  "/*"
+                                                ]
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Action": [
+                                            "kms:Decrypt",
+                                            "kms:DescribeKey"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::GetAtt": [
+                                              "pArtifactsBucketEncryptionKeyE5CE2753",
+                                              "Arn"
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Action": "*",
+                                          "Effect": "Allow",
+                                          "Resource": "*"
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "pqaDeployqaCreateChangeRoleDefaultPolicy2318DE63",
+                                    "roles": [
+                                      {
+                                        "Ref": "pqaDeployqaCreateChangeRoleD4597227"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "qa-Execute-Change": {
+                    "id": "qa-Execute-Change",
+                    "path": "SamPipelineModule/p/qa-Deploy/qa-Execute-Change",
+                    "children": {
+                      "CodePipelineActionRole": {
+                        "id": "CodePipelineActionRole",
+                        "path": "SamPipelineModule/p/qa-Deploy/qa-Execute-Change/CodePipelineActionRole",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "SamPipelineModule/p/qa-Deploy/qa-Execute-Change/CodePipelineActionRole/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "AWS": {
+                                          "Fn::Join": [
+                                            "",
+                                            [
+                                              "arn:",
+                                              {
+                                                "Ref": "AWS::Partition"
+                                              },
+                                              ":iam::",
+                                              {
+                                                "Ref": "AWS::AccountId"
+                                              },
+                                              ":root"
+                                            ]
+                                          ]
+                                        }
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                }
+                              }
+                            }
+                          },
+                          "8389e75f-0810-4838-bf64-d6f85a95cf83": {
+                            "id": "8389e75f-0810-4838-bf64-d6f85a95cf83",
+                            "path": "SamPipelineModule/p/qa-Deploy/qa-Execute-Change/CodePipelineActionRole/8389e75f-0810-4838-bf64-d6f85a95cf83"
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "SamPipelineModule/p/qa-Deploy/qa-Execute-Change/CodePipelineActionRole/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "SamPipelineModule/p/qa-Deploy/qa-Execute-Change/CodePipelineActionRole/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": [
+                                            "cloudformation:DescribeChangeSet",
+                                            "cloudformation:DescribeStacks",
+                                            "cloudformation:ExecuteChangeSet"
+                                          ],
+                                          "Condition": {
+                                            "StringEqualsIfExists": {
+                                              "cloudformation:ChangeSetName": "triggered change"
+                                            }
+                                          },
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::Join": [
+                                              "",
+                                              [
+                                                "arn:",
+                                                {
+                                                  "Ref": "AWS::Partition"
+                                                },
+                                                ":cloudformation:",
+                                                {
+                                                  "Ref": "AWS::Region"
+                                                },
+                                                ":",
+                                                {
+                                                  "Ref": "AWS::AccountId"
+                                                },
+                                                ":stack/",
+                                                {
+                                                  "Ref": "app"
+                                                },
+                                                "-qa/*"
+                                              ]
+                                            ]
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "pqaDeployqaExecuteChangeCodePipelineActionRoleDefaultPolicyA157D081",
+                                    "roles": [
+                                      {
+                                        "Ref": "pqaDeployqaExecuteChangeCodePipelineActionRole8FC3C72D"
+                                      }
+                                    ]
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-codepipeline.Pipeline",
-              "version": "1.106.1"
             }
           },
           "bp": {
@@ -1502,10 +1940,6 @@
                           "Version": "2012-10-17"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.CfnRole",
-                      "version": "1.106.1"
                     }
                   },
                   "DefaultPolicy": {
@@ -1582,8 +2016,7 @@
                                     "codebuild:CreateReportGroup",
                                     "codebuild:CreateReport",
                                     "codebuild:UpdateReport",
-                                    "codebuild:BatchPutTestCases",
-                                    "codebuild:BatchPutCodeCoverages"
+                                    "codebuild:BatchPutTestCases"
                                   ],
                                   "Effect": "Allow",
                                   "Resource": {
@@ -1617,7 +2050,7 @@
                                     "s3:GetBucket*",
                                     "s3:List*",
                                     "s3:DeleteObject*",
-                                    "s3:PutObject",
+                                    "s3:PutObject*",
                                     "s3:Abort*"
                                   ],
                                   "Effect": "Allow",
@@ -1685,22 +2118,10 @@
                               }
                             ]
                           }
-                        },
-                        "constructInfo": {
-                          "fqn": "@aws-cdk/aws-iam.CfnPolicy",
-                          "version": "1.106.1"
                         }
                       }
-                    },
-                    "constructInfo": {
-                      "fqn": "@aws-cdk/aws-iam.Policy",
-                      "version": "1.106.1"
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-iam.Role",
-                  "version": "1.106.1"
                 }
               },
               "Resource": {
@@ -1715,7 +2136,6 @@
                     "environment": {
                       "type": "LINUX_CONTAINER",
                       "image": "aws/codebuild/standard:1.0",
-                      "imagePullCredentialsType": "CODEBUILD",
                       "privilegedMode": false,
                       "computeType": "BUILD_GENERAL1_SMALL"
                     },
@@ -1747,16 +2167,8 @@
                       ]
                     }
                   }
-                },
-                "constructInfo": {
-                  "fqn": "@aws-cdk/aws-codebuild.CfnProject",
-                  "version": "1.106.1"
                 }
               }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/aws-codebuild.PipelineProject",
-              "version": "1.106.1"
             }
           },
           "CDKMetadata": {
@@ -1765,36 +2177,16 @@
             "children": {
               "Default": {
                 "id": "Default",
-                "path": "SamPipelineModule/CDKMetadata/Default",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnResource",
-                  "version": "1.106.1"
-                }
+                "path": "SamPipelineModule/CDKMetadata/Default"
               },
               "Condition": {
                 "id": "Condition",
-                "path": "SamPipelineModule/CDKMetadata/Condition",
-                "constructInfo": {
-                  "fqn": "@aws-cdk/core.CfnCondition",
-                  "version": "1.106.1"
-                }
+                "path": "SamPipelineModule/CDKMetadata/Condition"
               }
-            },
-            "constructInfo": {
-              "fqn": "@aws-cdk/core.Construct",
-              "version": "1.106.1"
             }
           }
-        },
-        "constructInfo": {
-          "fqn": "@aws-cdk/core.Stack",
-          "version": "1.106.1"
         }
       }
-    },
-    "constructInfo": {
-      "fqn": "@aws-cdk/core.App",
-      "version": "1.106.1"
     }
   }
 }
